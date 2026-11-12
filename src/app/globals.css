@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  color: #0f172a;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* NB (Neoventis Biotech) signature brand gradient: Vibrant Orange -> Deep Amber-Orange */
+.brand-gradient {
+  background: linear-gradient(135deg, #fb923c 0%, #f97316 48%, #ea580c 100%);
+}
+
+.brand-gradient:hover {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 48%, #c2410c 100%);
+}
+
+.brand-gradient-text {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 55%, #c2410c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Full-page 3D ambient backdrop matched to NB Orange & Charcoal Slate */
+.site-backdrop-3d {
+  background:
+    radial-gradient(circle at 12% 10%, rgba(249, 115, 22, 0.065) 0%, transparent 42%),
+    radial-gradient(circle at 88% 16%, rgba(71, 85, 105, 0.065) 0%, transparent 42%),
+    radial-gradient(circle at 20% 62%, rgba(251, 146, 60, 0.05) 0%, transparent 44%),
+    radial-gradient(circle at 82% 78%, rgba(51, 65, 85, 0.05) 0%, transparent 42%),
+    linear-gradient(180deg, #ffffff 0%, #fffcfa 48%, #f8fafc 100%);
+}
+
+.site-grid-3d {
+  position: absolute;
+  inset: 0;
+  perspective: 950px;
+  overflow: hidden;
+}
+
+.site-grid-3d::before {
+  content: "";
+  position: absolute;
+  inset: -12% -30% -10%;
+  transform: rotateX(58deg);
+  transform-origin: center top;
+  background-image:
+    linear-gradient(to right, rgba(71, 85, 105, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(249, 115, 22, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at 50% 42%, rgba(0, 0, 0, 0.85) 0%, transparent 82%);
+}
+
+@keyframes float3d {
+  0%,
+  100% {
+    transform: perspective(600px) translateY(0px) rotateZ(var(--badge-rotate, 0deg)) rotateX(8deg) rotateY(-8deg);
+  }
+  50% {
+    transform: perspective(600px) translateY(-14px) rotateZ(var(--badge-rotate, 0deg)) rotateX(-6deg) rotateY(10deg);
+  }
+}
+
+.animate-float-3d {
+  will-change: transform;
+  animation: float3d 8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-3d {
+    animation: none;
+  }
+}
+
+/* 3D studio stage behind each medicine product */
+.medicine-stage-3d {
+  position: relative;
+  perspective: 900px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 1) 0%, rgba(255, 247, 237, 0.55) 48%, rgba(241, 245, 249, 0.85) 100%);
+  box-shadow: inset 0 -18px 28px -18px rgba(15, 23, 42, 0.08);
+}
+
+.medicine-stage-floor-3d {
+  position: absolute;
+  inset-inline: -18%;
+  bottom: -24%;
+  height: 58%;
+  transform: rotateX(66deg);
+  transform-origin: center bottom;
+  background-image:
+    linear-gradient(to right, rgba(71, 85, 105, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(249, 115, 22, 0.1) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(241, 245, 249, 0.72) 100%);
+  background-size: 26px 26px, 26px 26px, 100% 100%;
+  border-top: 1px solid rgba(249, 115, 22, 0.25);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.95) 0%, transparent 92%);
+  pointer-events: none;
+}
