@@ -2,7 +2,7 @@ import { getMedicineImageUrl } from "@/lib/cloudinary";
 import { MEDICINES } from "@/data/medicines";
 import type { Medicine } from "@/types/medicine";
 
-const DEFAULT_SITE_URL = "https://neoventisbiotech.com";
+const DEFAULT_SITE_URL = "https://www.neoventisbiotechmed.com";
 
 export function getSiteUrl(): string {
   const configured =
