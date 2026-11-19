@@ -40,7 +40,9 @@ export async function generateMetadata({
 
   const siteUrl = getSiteUrl();
   const shortName = getShortMedicineName(medicine.name);
-  const title = `${shortName} (${medicine.name}) - Neoventis Biotech Medicines`;
+  const title = {
+    absolute: `${shortName} - Neoventis Biotech Medicines`,
+  };
   const description = `${shortName} (${medicine.name}) by Neoventis Biotech Medicines. Genuine ${medicine.category.toLowerCase()} available for delivery all over Bangladesh. Order directly on WhatsApp.`;
   const imageUrl = toAbsoluteImageUrl(medicine.image, siteUrl);
 

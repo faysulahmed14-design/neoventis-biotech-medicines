@@ -145,8 +145,8 @@ export function buildMedicineJsonLd(siteUrl: string, medicine: Medicine) {
       },
       {
         "@type": "Product",
-        name: medicine.name,
-        alternateName: shortName,
+        name: shortName,
+        alternateName: [medicine.name, `${shortName} ${medicine.category}`],
         category: medicine.category,
         image: [imageUrl],
         url: productUrl,
@@ -154,7 +154,18 @@ export function buildMedicineJsonLd(siteUrl: string, medicine: Medicine) {
           "@type": "Brand",
           name: "Neoventis Biotech Medicines",
         },
-        description: `${medicine.name} (${shortName}) from Neoventis Biotech Medicines. Available to deliver all over Bangladesh via direct WhatsApp order.`,
+        offers: {
+          "@type": "Offer",
+          availability: "https://schema.org/InStock",
+          priceCurrency: "BDT",
+          price: "0",
+          areaServed: "Bangladesh",
+          seller: {
+            "@type": "Organization",
+            name: "Neoventis Biotech Medicines",
+          },
+        },
+        description: `${shortName} (${medicine.name}) by Neoventis Biotech Medicines. Genuine ${medicine.category.toLowerCase()} available to order directly on WhatsApp with nationwide delivery across Bangladesh.`,
         areaServed: {
           "@type": "Country",
           name: "Bangladesh",
