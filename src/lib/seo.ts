@@ -5,20 +5,16 @@ import type { Medicine } from "@/types/medicine";
 const DEFAULT_SITE_URL = "https://www.neoventisbiotechmed.com";
 
 export function getSiteUrl(): string {
-  const configured =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    process.env.VERCEL_PROJECT_PRODUCTION_URL ||
-    process.env.VERCEL_URL;
+  const configured = process.env.NEXT_PUBLIC_SITE_URL;
 
-  if (!configured) {
-    return DEFAULT_SITE_URL;
+  if (configured && configured.trim()) {
+    const normalized = configured.trim().startsWith("http")
+      ? configured.trim()
+      : `https://${configured.trim()}`;
+    return normalized.replace(/\/+$/, "");
   }
 
-  const normalized = configured.startsWith("http")
-    ? configured
-    : `https://${configured}`;
-
-  return normalized.replace(/\/+$/, "");
+  return DEFAULT_SITE_URL;
 }
 
 export function getShortMedicineName(name: string): string {
