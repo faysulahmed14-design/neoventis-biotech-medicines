@@ -24,14 +24,21 @@ export function getShortMedicineName(name: string): string {
 export function getMedicineKeywords(medicine: Medicine): string[] {
   const shortName = getShortMedicineName(medicine.name);
   const form = medicine.category === "Capsules" ? "capsule" : "tablet";
+  const formPlural = medicine.category === "Capsules" ? "capsules" : "tablets";
 
   return [
+    shortName, // Exact short name (e.g. "Otubic", "Utamin", "Fattycid")
+    shortName.toLowerCase(),
     medicine.name,
-    shortName,
     `${shortName} ${form}`,
-    `${medicine.name} Bangladesh`,
+    `${shortName} ${formPlural}`,
+    `${shortName} medicine`,
+    `${shortName} Bangladesh`,
+    `${shortName} price in Bangladesh`,
+    `buy ${shortName} online`,
+    `order ${shortName} WhatsApp`,
     `${shortName} Neoventis`,
-    `buy ${shortName} online Bangladesh`,
+    `${medicine.name} Bangladesh`,
     "Neoventis Biotech Medicines",
     "Neoventis Medicines",
   ];

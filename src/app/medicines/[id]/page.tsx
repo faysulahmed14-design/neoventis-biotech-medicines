@@ -40,8 +40,8 @@ export async function generateMetadata({
 
   const siteUrl = getSiteUrl();
   const shortName = getShortMedicineName(medicine.name);
-  const title = `${medicine.name} (${shortName}) - ${medicine.category}`;
-  const description = `Order ${medicine.name} (${shortName}) from Neoventis Biotech Medicines. Authentic ${medicine.category.toLowerCase()} available to deliver all over Bangladesh directly via WhatsApp.`;
+  const title = `${shortName} (${medicine.name}) - Neoventis Biotech Medicines`;
+  const description = `${shortName} (${medicine.name}) by Neoventis Biotech Medicines. Genuine ${medicine.category.toLowerCase()} available for delivery all over Bangladesh. Order directly on WhatsApp.`;
   const imageUrl = toAbsoluteImageUrl(medicine.image, siteUrl);
 
   return {
@@ -49,23 +49,23 @@ export async function generateMetadata({
     description,
     keywords: getMedicineKeywords(medicine),
     alternates: {
-      canonical: `/medicines/${medicine.id}`,
+      canonical: `${siteUrl}/medicines/${medicine.id}`,
     },
     openGraph: {
-      title: `${medicine.name} | Neoventis Biotech Medicines`,
+      title: `${shortName} (${medicine.name}) | Neoventis Biotech Medicines`,
       description,
       type: "website",
-      url: `/medicines/${medicine.id}`,
+      url: `${siteUrl}/medicines/${medicine.id}`,
       images: [
         {
           url: imageUrl,
-          alt: `${medicine.name} - Neoventis Biotech Medicines`,
+          alt: `${shortName} - ${medicine.name} - Neoventis Biotech Medicines`,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${medicine.name} | Neoventis Biotech Medicines`,
+      title: `${shortName} (${medicine.name}) | Neoventis Biotech Medicines`,
       description,
       images: [imageUrl],
     },
