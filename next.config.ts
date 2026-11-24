@@ -84,6 +84,21 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "neoventis-biotech-medicines.vercel.app",
+          },
+        ],
+        destination: "https://www.neoventisbiotechmed.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
